@@ -1,755 +1,498 @@
-:root {
-  --bg: #f3efe6;
-  --paper: #fffdf8;
-  --ink: #131b2c;
-  --muted: #5e687a;
-  --line: #e1d8ca;
-  --red: #e14943;
-  --red-dark: #b83435;
-  --yellow: #f5c863;
-  --green: #1a8a68;
-  --shadow: 0 14px 0 rgba(19, 27, 44, 0.12);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: Inter, "Segoe UI", Tahoma, sans-serif;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.18;
-  background-image: linear-gradient(rgba(19, 27, 44, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(19, 27, 44, 0.04) 1px, transparent 1px);
-  background-size: 26px 26px;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px clamp(18px, 5vw, 72px);
-  background: rgba(255, 253, 248, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 14px;
-  background: var(--red);
-  color: white;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  box-shadow: 0 8px 0 rgba(184, 52, 53, 0.35);
-}
-
-.brand-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.brand-copy small {
-  color: var(--muted);
-  letter-spacing: 0.18em;
-  font-size: 10px;
-}
-
-.brand-copy strong {
-  font-size: 0.8rem;
-  letter-spacing: -0.04em;
-}
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.save-status {
-  font-size: 0.72rem;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.ghost-btn,
-.primary-btn,
-.secondary-btn,
-.level-card,
-.option,
-.close-btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.ghost-btn {
-  background: transparent;
-  border: 1px solid rgba(19, 27, 44, 0.18);
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-weight: 800;
-}
-
-.primary-btn,
-.secondary-btn {
-  border: none;
-  border-radius: 12px;
-  padding: 16px 22px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-.primary-btn {
-  background: var(--red);
-  color: white;
-  box-shadow: 0 8px 0 rgba(184, 52, 53, 0.34);
-}
-
-.secondary-btn {
-  background: var(--ink);
-  color: white;
-  box-shadow: 0 8px 0 rgba(19, 27, 44, 0.18);
-}
-
-.primary-btn:hover,
-.secondary-btn:hover,
-.ghost-btn:hover,
-.level-card:hover,
-.option:hover {
-  transform: translateY(-2px);
-}
-
-.screen {
-  max-width: 1200px;
-  margin: 0 auto;
-  min-height: calc(100vh - 90px);
-  padding: clamp(32px, 4vw, 72px) clamp(18px, 5vw, 72px) 80px;
-}
-
-.hero-panel {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: clamp(28px, 5vw, 64px);
-  min-height: 72vh;
-}
-
-.eyebrow {
-  margin: 0 0 16px;
-  color: var(--red);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  font-weight: 900;
-}
-
-.hero-copy h1 {
-  margin: 0 0 18px;
-  font-size: clamp(2.9rem, 7vw, 6rem);
-  line-height: 0.92;
-  letter-spacing: -0.08em;
-}
-
-.hero-copy h1 span {
-  color: var(--red);
-}
-
-.lead {
-  max-width: 620px;
-  margin: 0 0 28px;
-  color: var(--muted);
-  line-height: 1.75;
-  font-size: 1.12rem;
-}
-
-.cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.hero-art {
-  position: relative;
-  width: min(100%, 500px);
-  height: 420px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, rgba(245,200,99,0.2), rgba(255,255,255,0.85));
-  border: 2px solid var(--ink);
-  border-radius: 26px;
-  box-shadow: var(--shadow);
-}
-
-.stamp {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  padding: 10px 12px;
-  color: var(--red);
-  border: 3px solid var(--red);
-  background: rgba(255,255,255,0.35);
-  font-weight: 900;
-  transform: rotate(12deg);
-}
-
-.lupa-wrap {
-  position: absolute;
-  left: 60px;
-  top: 72px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 16px solid var(--ink);
-  background: rgba(255,255,255,0.35);
-}
-
-.lupa-ring {
-  position: absolute;
-  inset: 26px;
-  border-radius: 50%;
-  border: 2px dashed var(--red);
-}
-
-.lupa-wrap::after {
-  content: "";
-  position: absolute;
-  width: 26px;
-  height: 120px;
-  right: -56px;
-  bottom: -78px;
-  background: var(--ink);
-  border-radius: 12px;
-  transform: rotate(-42deg);
-}
-
-.folder-card {
-  position: absolute;
-  right: 26px;
-  bottom: 26px;
-  padding: 18px 24px;
-  border: 2px solid var(--ink);
-  background: var(--yellow);
-  border-radius: 14px;
-  transform: rotate(-8deg);
-  box-shadow: 6px 6px 0 rgba(19, 27, 44, 0.3);
-}
-
-.folder-card span {
-  display: block;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: -0.06em;
-  font-weight: 900;
-}
-
-.folder-card small {
-  display: block;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.panel-header {
-  text-align: center;
-}
-
-.panel-header h2,
-.briefing-card h2,
-.result-panel h2 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  letter-spacing: -0.06em;
-}
-
-.level-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  max-width: 980px;
-  margin: 42px auto 18px;
-}
-
-.level-card {
-  border: 2px solid var(--line);
-  background: var(--paper);
-  border-radius: 18px;
-  padding: 24px 20px;
-  text-align: left;
-  box-shadow: 0 8px 0 rgba(19, 27, 44, 0.04);
-}
-
-.level-card.selected {
-  border-color: var(--red);
-  box-shadow: 0 12px 0 rgba(225, 73, 67, 0.18);
-}
-
-.lvl-emoji {
-  display: block;
-  font-size: 2.2rem;
-  margin-bottom: 12px;
-}
-
-.level-card strong,
-.level-card small,
-.level-card b {
-  display: block;
-}
-
-.level-card strong {
-  font-size: 1.6rem;
-}
-
-.level-card small {
-  margin: 8px 0 18px;
-  color: var(--muted);
-}
-
-.level-card b {
-  color: var(--red);
-}
-
-.center-row {
-  display: flex;
-  justify-content: center;
-}
-
-.briefing-card {
-  max-width: 760px;
-  padding: clamp(24px, 6vw, 54px);
-  margin: 30px auto 0;
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 22px;
-  box-shadow: 12px 12px 0 rgba(245,200,99,0.45);
-  text-align: center;
-}
-
-.briefing-card p {
-  color: var(--muted);
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
-
-.rules-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 26px 0 30px;
-}
-
-.rules-row span {
-  font-size: 0.75rem;
-  font-weight: 800;
-  background: rgba(245,200,99,0.2);
-  border: 1px solid rgba(19, 27, 44, 0.12);
-  border-radius: 999px;
-  padding: 8px 12px;
-}
-
-.game-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 16px;
-  margin-bottom: 22px;
-}
-
-.game-topbar h2 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  letter-spacing: -0.07em;
-}
-
-.score-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-weight: 900;
-}
-
-.score-box strong {
-  font-size: 1.35rem;
-}
-
-.score-box small {
-  color: var(--muted);
-}
-
-.progress-strip {
-  width: 100%;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(19, 27, 44, 0.08);
-  overflow: hidden;
-  margin-bottom: 28px;
-}
-
-.progress-strip span {
-  display: block;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--red), #f29e67);
-  transition: width 0.3s ease;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
-  gap: 22px;
-}
-
-.case-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.case-item {
-  background: rgba(255,255,255,0.38);
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  padding: 12px 14px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--muted);
-}
-
-.case-item.active {
-  background: var(--ink);
-  color: white;
-}
-
-.case-item.done {
-  color: var(--green);
-}
-
-.question-panel {
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 20px;
-  padding: clamp(20px, 4vw, 36px);
-  box-shadow: 0 16px 0 rgba(19,27,44,0.03);
-}
-
-.question-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 800;
-}
-
-.crime-tag {
-  background: rgba(225, 73, 67, 0.12);
-  border-radius: 8px;
-  color: var(--red);
-  padding: 7px 10px;
-}
-
-.question-panel h3 {
-  margin: 24px 0 22px;
-  font-size: clamp(1.7rem, 4vw, 2.7rem);
-  line-height: 1.2;
-  letter-spacing: -0.06em;
-}
-
-.options {
-  display: grid;
-  gap: 12px;
-}
-
-.option {
-  border: 2px solid var(--line);
-  background: white;
-  border-radius: 12px;
-  text-align: left;
-  padding: 16px 18px;
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.option.correct {
-  border-color: var(--green);
-  background: rgba(26,138,104,0.12);
-}
-
-.option.wrong {
-  border-color: var(--red);
-  background: rgba(225,73,67,0.09);
-}
-
-.option:disabled {
-  cursor: default;
-}
-
-.feedback {
-  background: rgba(245,200,99,0.14);
-  color: var(--ink);
-  border: 1px solid rgba(245,200,99,0.3);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 18px;
-  line-height: 1.6;
-}
-
-.next-btn {
-  margin-top: 18px;
-}
-
-.result-panel {
-  max-width: 680px;
-  margin: 36px auto 0;
-  padding: clamp(24px, 5vw, 52px);
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 24px;
-  box-shadow: 12px 12px 0 rgba(19,27,44,0.06);
-  text-align: center;
-}
-
-.trophy {
-  font-size: clamp(3rem, 9vw, 4.6rem);
-  margin-bottom: 10px;
-}
-
-.result-panel p {
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.score-final {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 28px 0;
-}
-
-.score-final strong {
-  font-size: clamp(3.2rem, 10vw, 5rem);
-  color: var(--red);
-  letter-spacing: -0.08em;
-}
-
-.score-final span {
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.result-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  background: rgba(19,27,44,0.66);
-  z-index: 50;
-}
-
-.modal-card,
-.certificate-card {
-  position: relative;
-  width: min(100%, 440px);
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 20px;
-  padding: 26px 24px 22px;
-}
-
-.close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  border: none;
-  background: transparent;
-  font-size: 2rem;
-  color: var(--muted);
-}
-
-.modal-card h3 {
-  font-size: 2rem;
-  margin: 0 0 8px;
-  letter-spacing: -0.06em;
-}
-
-.muted {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.modal-card label {
-  display: block;
-  margin-top: 18px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  color: var(--muted);
-}
-
-.modal-card input {
-  width: 100%;
-  margin-top: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: white;
-}
-
-.full-width {
-  width: 100%;
-  margin-top: 22px;
-}
-
-.tiny {
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: 0.72rem;
-  line-height: 1.6;
-}
-
-.certificate-card {
-  width: min(100%, 620px);
-  background: linear-gradient(135deg, #efe2cc, #faf5ee);
-}
-
-.certificate-inner {
-  border: 3px dashed var(--ink);
-  border-radius: 18px;
-  padding: 28px 18px;
-  text-align: center;
-}
-
-.star {
-  color: var(--yellow);
-  font-size: 2.2rem;
-  margin: 10px 0 8px;
-}
-
-.certificate-inner h3 {
-  margin: 10px 0;
-  font-size: clamp(2rem, 4vw, 2.7rem);
-  letter-spacing: -0.06em;
-}
-
-.certificate-inner h4 {
-  margin: 12px 0 18px;
-  font-size: clamp(1.8rem, 4vw, 2.3rem);
-  color: var(--red);
-}
-
-.certificate-inner strong {
-  display: block;
-  margin-top: 18px;
-  font-size: 1.6rem;
-}
-
-.signature {
-  margin-top: 26px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(19,27,44,0.3);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.66rem;
-  font-weight: 800;
-}
-
-@media (max-width: 820px) {
-  .hero-panel,
-  .game-grid {
-    grid-template-columns: 1fr;
+const levelConfig = {
+  facil: { label: 'Cadete', points: 10, questionsPerStation: 5 },
+  medio: { label: 'Investigador', points: 15, questionsPerStation: 7 },
+  dificil: { label: 'Agente Especial', points: 20, questionsPerStation: 9 }
+};
+
+const stations = [
+  {
+    name: 'Concordância',
+    short: 'Concordância',
+    crime: 'CRIME GRAMATICAL',
+    questions: [
+      { q: 'Qual frase está correta?', options: ['Haviam muitas pistas na sala.', 'Havia muitas pistas na sala.', 'Haviam muita pista na sala.'], answer: 1, explanation: 'Havia é impessoal quando indica existência e fica no singular.' },
+      { q: 'Qual alternativa apresenta concordância correta?', options: ['Os detetives encontrou a pista.', 'O detetive encontraram as pistas.', 'Os detetives encontraram as pistas.'], answer: 2, explanation: 'O verbo concorda com o sujeito “os detetives”: encontraram.' },
+      { q: 'Complete: “A maioria dos alunos ___ preparada.”', options: ['estão', 'está', 'estavam'], answer: 1, explanation: 'Como “maioria” é singular, o verbo fica no singular.' },
+      { q: 'Encontre a frase correta.', options: ['Fazem dois anos que estudo.', 'Faz dois anos que estudo.', 'Fazem dois ano que estudo.'], answer: 1, explanation: 'O verbo “fazer” indica tempo e é impessoal, então fica no singular.' },
+      { q: 'Qual frase tem concordância nominal correta?', options: ['As pista importante sumiu.', 'A pista importantes sumiu.', 'As pistas importantes sumiram.'], answer: 2, explanation: 'O adjetivo concorda com “pistas” no plural.' },
+      { q: 'Escolha a forma adequada: “___ muitas razões para investigar.”', options: ['Existe', 'Existem', 'Existia'], answer: 1, explanation: 'O sujeito é plural: “muitas razões”.' },
+      { q: 'A frase correta é:', options: ['Segue anexo as provas.', 'Seguem anexas as provas.', 'Seguem anexo as provas.'], answer: 1, explanation: 'As provas seguem anexas, pois o predicativo concorda com elas.' },
+      { q: 'Qual opção está correta?', options: ['Nós vai investigar o caso.', 'Nós vamos investigar o caso.', 'Nós vamos investigará o caso.'], answer: 1, explanation: 'A forma correta é “nós vamos”.' },
+      { q: 'Complete: “É proibido ___ sem autorização.”', options: ['entrada', 'entradas', 'entrar'], answer: 2, explanation: 'Com “é proibido” a forma correta é o verbo no infinitivo: entrar.' }
+    ]
+  },
+  {
+    name: 'Fake News',
+    short: 'Fake news',
+    crime: 'CRIME DE INTERPRETAÇÃO',
+    questions: [
+      { q: 'Notícia A e Notícia B. Qual é mais confiável?', options: ['A, porque têm autor e data.', 'B, porque é mais emocionante.', 'As duas são iguais.'], answer: 0, explanation: 'A notícia A traz autor, fonte e data, o que facilita a checagem.' },
+      { q: 'Um texto usa “todo mundo sabe”, mas não cita pesquisa. O que fazer?', options: ['Compartilhar imediatamente.', 'Procurar a fonte original e comparar informações.', 'Acreditar porque parece convincente.'], answer: 1, explanation: 'Leitura crítica exige checar fontes e evidências.' },
+      { q: 'Qual título é mais responsável?', options: ['INCRÍVEL! Cura milagrosa funciona para todos!', 'Pesquisa inicial aponta possível benefício, dizem cientistas.', 'Você não vai acreditar nesta descoberta!'], answer: 1, explanation: 'O segundo título é mais cauteloso e informa que a pesquisa é inicial.' },
+      { q: 'Uma notícia tem uma foto real, mas legenda falsa. Isso significa que ela é confiável?', options: ['Sim, toda foto prova a legenda.', 'Não; a imagem precisa de contexto e verificação.', 'Sim, se várias pessoas curtiram.'], answer: 1, explanation: 'Uma imagem pode ser antiga ou usada fora do contexto.' },
+      { q: 'Qual pista é sinal de desinformação?', options: ['Data e autor identificados.', 'Link para documento oficial.', 'Pedido urgente para compartilhar sem pensar.'], answer: 2, explanation: 'Urgência e pressão emocional são estratégias comuns de fake news.' },
+      { q: 'Para confirmar uma informação, o melhor é:', options: ['Ler só o título.', 'Consultar fontes confiáveis e comparar versões.', 'Escolher o comentário mais curtido.'], answer: 1, explanation: 'Comparar fontes reduz o risco de cair em boatos.' },
+      { q: 'Um argumento é mais forte quando:', options: ['Tem dados e explica de onde vieram.', 'Tem muitas letras maiúsculas.', 'Ataca quem discorda.'], answer: 0, explanation: 'Evidência e explicação fortalecem um argumento.' },
+      { q: 'O que significa “opinião” em um texto?', options: ['Uma interpretação ou avaliação pessoal.', 'Um dado mensurável sempre.', 'Uma fonte oficial.'], answer: 0, explanation: 'Opinião é uma visão pessoal, não necessariamente um fato comprovado.' },
+      { q: 'Antes de compartilhar uma notícia, a melhor pergunta é:', options: ['Quem publicou e quais evidências existem?', 'Quantas pessoas mandaram para mim?', 'O título me deixou assustado?'], answer: 0, explanation: 'Procedência e evidência são essenciais antes de compartilhar.' }
+    ]
+  },
+  {
+    name: 'Ortografia',
+    short: 'Ortografia',
+    crime: 'PALAVRAS ESCONDIDAS',
+    questions: [
+      { q: 'Complete: “___ fomos ao arquivo; ___ a investigação continua.”', options: ['Agente / mais', 'A gente / mas', 'A gente / mais'], answer: 1, explanation: '“A gente” significa “nós”; “mas” introduz oposição.' },
+      { q: 'Qual frase está correta?', options: ['Ele não foi, mais avisou.', 'Ele não foi, mas avisou.', 'Ele não foi, más avisou.'], answer: 1, explanation: 'A conjunção de oposição correta é “mas”.' },
+      { q: 'Escolha a grafia correta:', options: ['exceção', 'esceção', 'execessão'], answer: 0, explanation: 'A grafia correta é exceção.' },
+      { q: 'Qual opção completa: “O ___ chegou ___ cedo.”', options: ['concerto / de mais', 'conserto / demais', 'conserto / de mais'], answer: 1, explanation: '“Conserto” é reparo e “demais” indica excesso.' },
+      { q: 'Assinale a forma correta:', options: ['A análise revelou um problema.', 'A analize revelou um problema.', 'A análize revelou um problema.'], answer: 0, explanation: 'Análise é escrita com s.' },
+      { q: 'Qual palavra está correta?', options: ['pesquiza', 'pesquisa', 'pesquissa'], answer: 1, explanation: 'A grafia correta é pesquisa.' },
+      { q: 'Complete: “Ele ___ a pista, e nós ___ juntos.”', options: ['trás / vamos', 'traz / vamos', 'traz / vamus'], answer: 1, explanation: '“Traz” é a forma correta do verbo trazer; “vamos” é o verbo para “nós”.' },
+      { q: 'A escrita correta é:', options: ['privilégio', 'previlégio', 'privilêgio'], answer: 0, explanation: 'A grafia correta é privilégio.' },
+      { q: 'Qual frase não tem erro ortográfico?', options: ['A equipe agiu com discrição.', 'A equipe agiu com discrissão.', 'A equipe ajil com discrição.'], answer: 0, explanation: 'Discrição está escrita corretamente.' }
+    ]
+  },
+  {
+    name: 'Vocabulário',
+    short: 'Vocabulário',
+    crime: 'CRIME DO PLÁGIO',
+    questions: [
+      { q: 'Troque “O detetive viu a pista” por uma frase sem repetir a mesma palavra.', options: ['O investigador viu a pista.', 'O detetive viu o detetive.', 'O viu viu a pista.'], answer: 0, explanation: 'Investigator é sinônimo de detetive, evitando a repetição.' },
+      { q: 'Qual palavra pode substituir “rápido”?', options: ['veloz', 'pesado', 'distante'], answer: 0, explanation: 'Veloz é sinônimo de rápido.' },
+      { q: 'Em “a equipe iniciou a busca”, “começou” pode substituir:', options: ['iniciou', 'busca', 'equipe'], answer: 0, explanation: 'Começou é sinônimo de iniciou.' },
+      { q: 'Qual alternativa evita repetição?', options: ['A testemunha falou. A testemunha saiu.', 'A testemunha falou. Ela saiu.', 'A testemunha falou. A testemunha testemunhou.'], answer: 1, explanation: 'O pronome “ela” evita repetição.' },
+      { q: 'Sinônimo de “difícil” é:', options: ['complexo', 'simples', 'claro'], answer: 0, explanation: 'Complexo pode significar difícil.' },
+      { q: 'Em um texto, variar palavras serve para:', options: ['deixar a escrita mais clara e interessante.', 'confundir o leitor.', 'eliminar todas as ideias.'], answer: 0, explanation: 'Variedade vocabular melhora leitura e clareza.' },
+      { q: 'Qual substitui “importante”?', options: ['relevante', 'pequeno', 'invisível'], answer: 0, explanation: 'Relevante é sinônimo de importante.' },
+      { q: 'Complete: “O inspetor ___ as provas e ___ uma conclusão.”', options: ['analisou / formulou', 'comeu / desenhou', 'perdeu / apagou'], answer: 0, explanation: 'O contexto pede ações de investigação.' },
+      { q: 'Qual par tem palavras de sentido parecido?', options: ['feliz / contente', 'alto / baixo', 'entrar / sair'], answer: 0, explanation: 'Feliz e contente são sinônimos.' }
+    ]
+  },
+  {
+    name: 'Caso Final',
+    short: 'Caso final',
+    crime: 'DESAFIO ENEM',
+    questions: [
+      { q: 'Qual conectivo completa: “A equipe estudou as pistas; ___, resolveu o caso.”', options: ['portanto', 'porém', 'embora'], answer: 0, explanation: 'Portanto indica conclusão.' },
+      { q: '“O texto não tem fonte. ___, não é possível confiar nele.”', options: ['Além disso', 'Por isso', 'Enquanto'], answer: 1, explanation: 'Por isso expressa consequência.' },
+      { q: 'Qual frase tem melhor conexão?', options: ['Estudou. Passou.', 'Estudou bastante; por isso, passou.', 'Estudou, mas passou porque.'], answer: 1, explanation: 'A frase com “por isso” mostra relação causal clara.' },
+      { q: 'Complete: “___ a notícia pareça verdadeira, devemos verificar a fonte.”', options: ['Embora', 'Portanto', 'Além disso'], answer: 0, explanation: 'Embora expressa concessão.' },
+      { q: 'Qual conectivo adiciona uma informação?', options: ['Além disso', 'Entretanto', 'Logo'], answer: 0, explanation: 'Além disso soma ideias.' },
+      { q: 'Organize: 1 estudar fontes / 2 compartilhar. Qual ligação correta?', options: ['Devemos compartilhar antes de estudar fontes.', 'Devemos estudar as fontes antes de compartilhar.', 'Devemos fontes compartilhar estudar.'], answer: 1, explanation: 'A ordem lógica é primeiro estudar e depois compartilhar.' },
+      { q: 'Qual conclusão é mais adequada para uma redação?', options: ['Logo, a leitura crítica ajuda a combater a desinformação.', 'E aí acabou.', 'Mas porque sim.'], answer: 0, explanation: 'Um conectivo de conclusão deixa a redação mais formal.' },
+      { q: '“Queria ajudar, ___ não tinha informações.”', options: ['mas', 'portanto', 'porque'], answer: 0, explanation: 'Mas introduz oposição.' },
+      { q: 'Complete: “A linguagem é ferramenta de cidadania, ___ deve ser usada com responsabilidade.”', options: ['assim', 'porém', 'apesar'], answer: 0, explanation: 'Assim marca consequência ou conclusão.' }
+    ]
   }
+];
 
-  .level-grid {
-    grid-template-columns: 1fr;
+const saveKey = 'dlp-pro-save';
+const profileKey = 'dlp-pro-profile';
+const leaderboardKey = 'dlp-pro-rank';
+
+const state = {
+  level: 'medio',
+  stationIndex: 0,
+  questionIndex: 0,
+  score: 0,
+  lives: 3,
+  answered: false,
+  userName: 'Detetive',
+  email: '',
+  stationQueue: [],
+  completed: false,
+  bestScore: 0,
+  lastResult: 0
+};
+
+const $ = (id) => document.getElementById(id);
+
+function shuffle(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
+  return copy;
+}
 
-  .game-topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach((screen) => screen.classList.add('hidden'));
+  $(name).classList.remove('hidden');
+}
 
-  .case-sidebar {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
+function updateProfileButton() {
+  $('accountBtn').textContent = state.userName || 'Entrar';
+}
 
-  .case-item {
-    text-align: center;
-    font-size: 0.62rem;
-    padding: 10px 8px;
+function loadProfile() {
+  try {
+    const profile = JSON.parse(localStorage.getItem(profileKey) || '{}');
+    if (profile.name) state.userName = profile.name;
+    if (profile.email) state.email = profile.email;
+    if (profile.bestScore) state.bestScore = Number(profile.bestScore) || 0;
+    if (profile.lastResult) state.lastResult = Number(profile.lastResult) || 0;
+    updateProfileButton();
+  } catch (error) {
+    // ignore
   }
 }
 
-@media (max-width: 540px) {
-  .topbar {
-    padding: 12px 14px;
-  }
+function saveProfile() {
+  const payload = {
+    name: state.userName,
+    email: state.email,
+    bestScore: state.bestScore,
+    lastResult: state.lastResult
+  };
+  localStorage.setItem(profileKey, JSON.stringify(payload));
+  updateProfileButton();
+}
 
-  .brand-copy strong {
-    display: none;
-  }
-
-  .save-status {
-    display: none;
-  }
-
-  .cta-row,
-  .result-actions {
-    flex-direction: column;
-  }
-
-  .primary-btn,
-  .secondary-btn {
-    width: 100%;
+function getLeaderboard() {
+  try {
+    return JSON.parse(localStorage.getItem(leaderboardKey) || '[]');
+  } catch (error) {
+    return [];
   }
 }
+
+function setLeaderboardScore() {
+  const leaderboard = getLeaderboard();
+  const entry = { name: state.userName, score: state.score, level: levelConfig[state.level].label, at: new Date().toISOString() };
+  const merged = [...leaderboard, entry]
+    .sort((a, b) => Number(b.score) - Number(a.score))
+    .slice(0, 10);
+
+  localStorage.setItem(leaderboardKey, JSON.stringify(merged));
+}
+
+function renderLeaderboard() {
+  const leaderboard = getLeaderboard();
+  const list = $('leaderboardList');
+  if (!list) return;
+
+  if (!leaderboard.length) {
+    list.innerHTML = '<li class="empty-item">Nenhum detetive registrado ainda.</li>';
+    return;
+  }
+
+  list.innerHTML = leaderboard
+    .map((entry, index) => `
+      <li class="leaderboard-item">
+        <span class="rank">#${index + 1}</span>
+        <span class="name">${entry.name}</span>
+        <span class="points">${entry.score} pts</span>
+      </li>
+    `)
+    .join('');
+}
+
+function buildStationQueue() {
+  return stations.map((station) => {
+    const pool = station.questions.map((_, index) => index);
+    const selected = shuffle(pool).slice(0, Math.min(levelConfig[state.level].questionsPerStation, station.questions.length));
+    return { stationIndex: station.name, questions: selected };
+  });
+}
+
+function updateCards() {
+  $('bestScoreCard').textContent = String(state.bestScore || 0);
+  $('currentLevelCard').textContent = levelConfig[state.level].label;
+}
+
+function saveState() {
+  const payload = {
+    ...state,
+    stationQueue: state.stationQueue
+  };
+  localStorage.setItem(saveKey, JSON.stringify(payload));
+  $('saveStatus').textContent = '✓ salvo agora';
+  setTimeout(() => {
+    $('saveStatus').textContent = 'Progresso local';
+  }, 1000);
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(saveKey);
+    if (!raw) return false;
+    const saved = JSON.parse(raw);
+    if (!saved) return false;
+    Object.assign(state, saved);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function renderCaseList() {
+  const html = stations.map((station, index) => {
+    let status = '';
+    if (index < state.stationIndex) status = 'done';
+    if (index === state.stationIndex) status = 'active';
+    return `<div class="case-item ${status}">${index + 1}. ${station.short}</div>`;
+  }).join('');
+
+  $('caseList').innerHTML = html;
+}
+
+function updateScore() {
+  $('scoreValue').textContent = String(state.score);
+  $('livesValue').textContent = String(state.lives);
+  updateCards();
+}
+
+function renderQuestion() {
+  if (state.stationIndex >= stations.length) {
+    endGame();
+    return;
+  }
+
+  const station = stations[state.stationIndex];
+  const queue = state.stationQueue[state.stationIndex]?.questions || [];
+  const total = Math.min(levelConfig[state.level].questionsPerStation, station.questions.length);
+
+  if (!queue.length || state.questionIndex >= queue.length) {
+    if (state.stationIndex < stations.length - 1) {
+      state.stationIndex += 1;
+      state.questionIndex = 0;
+      renderCaseList();
+      renderQuestion();
+      return;
+    }
+    endGame();
+    return;
+  }
+
+  const questionId = queue[state.questionIndex];
+  const question = station.questions[questionId];
+
+  $('stationKicker').textContent = `ESTAÇÃO ${String(state.stationIndex + 1).padStart(2, '0')}`;
+  $('stationTitle').textContent = station.name;
+  $('crimeTag').textContent = station.crime;
+  $('questionCounter').textContent = `Pista ${state.questionIndex + 1}/${total}`;
+  $('questionText').textContent = question.q;
+
+  $('options').innerHTML = '';
+  shuffle(question.options.map((option, index) => ({ option, index }))).forEach(({ option, index }) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'option';
+    btn.textContent = option;
+    btn.dataset.index = String(index);
+    btn.addEventListener('click', () => answerQuestion(index, question));
+    $('options').appendChild(btn);
+  });
+
+  $('feedbackBox').classList.add('hidden');
+  $('feedbackBox').textContent = '';
+  $('nextBtn').classList.add('hidden');
+
+  const progress = ((state.stationIndex * total + state.questionIndex) / (stations.length * total)) * 100;
+  $('progressBar').style.width = `${Math.min(progress, 100)}%`;
+
+  updateScore();
+}
+
+function answerQuestion(selectedIndex, question) {
+  if (state.answered) return;
+  state.answered = true;
+
+  const buttons = document.querySelectorAll('.option');
+  buttons.forEach((button) => {
+    const idx = Number(button.dataset.index);
+    button.disabled = true;
+
+    if (idx === question.answer) button.classList.add('correct');
+    if (idx === selectedIndex && idx !== question.answer) button.classList.add('wrong');
+  });
+
+  const correct = selectedIndex === question.answer;
+
+  if (correct) {
+    state.score += levelConfig[state.level].points;
+  } else {
+    state.lives -= 1;
+  }
+
+  const feedback = $('feedbackBox');
+  feedback.classList.remove('hidden');
+  feedback.innerHTML = correct
+    ? `✅ <strong>Pista confirmada!</strong> ${question.explanation}`
+    : `❌ <strong>Quase!</strong> A resposta correta era “${question.options[question.answer]}”. ${question.explanation}`;
+
+  if (state.lives <= 0) {
+    feedback.innerHTML += '<br><br>Suas vidas acabaram. A investigação foi interrompida.';
+    setTimeout(() => endGame(), 1200);
+    updateScore();
+    saveState();
+    return;
+  }
+
+  $('nextBtn').classList.remove('hidden');
+  $('nextBtn').textContent = 'Próxima pista →';
+
+  updateScore();
+  saveState();
+}
+
+function moveNext() {
+  const currentQueue = state.stationQueue[state.stationIndex]?.questions || [];
+
+  if (state.questionIndex < currentQueue.length - 1) {
+    state.questionIndex += 1;
+    state.answered = false;
+    renderQuestion();
+    saveState();
+    return;
+  }
+
+  if (state.stationIndex < stations.length - 1) {
+    state.stationIndex += 1;
+    state.questionIndex = 0;
+    state.answered = false;
+    renderCaseList();
+    renderQuestion();
+    saveState();
+    return;
+  }
+
+  endGame();
+}
+
+function getBadgeText() {
+  if (state.score >= 500) return '🧠 Detetive supremo';
+  if (state.score >= 350) return '📖 Investigador brilhante';
+  if (state.score >= 220) return '🔎 Perito em linguagem';
+  if (state.score >= 120) return '⭐ Detetive em formação';
+  return '📝 Primeiro caso';
+}
+
+function renderBadges() {
+  const badgeRow = $('badgeRow');
+  if (!badgeRow) return;
+
+  const items = [
+    getBadgeText(),
+    state.lives > 0 ? '💚 Mission complete' : '⚠️ Ainda em treinamento',
+    `🎯 ${levelConfig[state.level].label}`
+  ];
+
+  badgeRow.innerHTML = items.map((badge) => `<span class="badge">${badge}</span>`).join('');
+}
+
+function endGame() {
+  showScreen('resultScreen');
+  $('finalScore').textContent = String(state.score);
+  const passed = state.score >= 160 && state.lives > 0;
+  $('resultTitle').textContent = passed ? 'Caso encerrado com sucesso!' : 'A investigação foi interrompida';
+  $('resultText').textContent = passed
+    ? `Excelente, ${state.userName}! Você resolveu os crimes da língua portuguesa e ganhou o certificado.`
+    : 'Não desista, detetive. A próxima investigação vai revelar todas as pistas.';
+
+  $('certificateName').textContent = state.userName;
+  $('certificateScore').textContent = passed ? '1000' : String(Math.min(999, state.score));
+
+  state.bestScore = Math.max(state.bestScore || 0, state.score);
+  state.lastResult = state.score;
+  saveProfile();
+  setLeaderboardScore();
+  renderLeaderboard();
+  renderBadges();
+  state.completed = true;
+  saveState();
+}
+
+function startNewGame() {
+  state.level = document.querySelector('.level-card.selected')?.dataset.level || 'medio';
+  state.stationIndex = 0;
+  state.questionIndex = 0;
+  state.score = 0;
+  state.lives = 3;
+  state.answered = false;
+  state.completed = false;
+  state.stationQueue = buildStationQueue();
+  renderCaseList();
+  showScreen('gameScreen');
+  renderQuestion();
+  saveState();
+}
+
+function continueGame() {
+  const loaded = loadState();
+  if (!loaded) {
+    return startNewGame();
+  }
+
+  if (!state.stationQueue || state.stationQueue.length === 0) {
+    state.stationQueue = buildStationQueue();
+  }
+
+  renderCaseList();
+  showScreen('gameScreen');
+  renderQuestion();
+}
+
+function bindEvents() {
+  $('startBtn').addEventListener('click', () => showScreen('levelScreen'));
+  $('continueBtn').addEventListener('click', () => continueGame());
+  $('briefingBtn').addEventListener('click', () => showScreen('briefingScreen'));
+  $('missionBtn').addEventListener('click', () => startNewGame());
+  $('restartBtn').addEventListener('click', () => showScreen('levelScreen'));
+  $('nextBtn').addEventListener('click', () => moveNext());
+  $('certificateBtn').addEventListener('click', () => $('certificateModal').classList.remove('hidden'));
+  $('closeCertificate').addEventListener('click', () => $('certificateModal').classList.add('hidden'));
+  $('leaderboardBtn').addEventListener('click', () => {
+    renderLeaderboard();
+    $('leaderboardModal').classList.remove('hidden');
+  });
+  $('closeLeaderboard').addEventListener('click', () => $('leaderboardModal').classList.add('hidden'));
+
+  $('accountBtn').addEventListener('click', () => {
+    const profile = JSON.parse(localStorage.getItem(profileKey) || '{}');
+    $('nameInput').value = profile.name || state.userName;
+    $('emailInput').value = profile.email || state.email;
+    $('accountModal').classList.remove('hidden');
+  });
+
+  $('closeModal').addEventListener('click', () => $('accountModal').classList.add('hidden'));
+
+  $('saveAccount').addEventListener('click', () => {
+    const name = $('nameInput').value.trim() || 'Detetive';
+    const email = $('emailInput').value.trim();
+
+    if (!email || !email.includes('@')) {
+      alert('Digite um e-mail válido para salvar seu perfil.');
+      return;
+    }
+
+    state.userName = name;
+    state.email = email;
+    saveProfile();
+    saveState();
+    $('accountModal').classList.add('hidden');
+  });
+
+  document.querySelectorAll('.level-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.level-card').forEach((item) => item.classList.remove('selected'));
+      card.classList.add('selected');
+      state.level = card.dataset.level;
+      updateCards();
+    });
+  });
+}
+
+function init() {
+  bindEvents();
+  loadProfile();
+  renderCaseList();
+  renderLeaderboard();
+  updateScore();
+  updateCards();
+  showScreen('startScreen');
+}
+
+init();
