@@ -1,20 +1,30 @@
 # D.L.P. — Delegacia da Língua Portuguesa
 
-Jogo educativo de RPG para a feira escolar, responsivo para computadores, tablets e celulares.
+Uma versão melhorada do jogo de RPG educativo com:
 
-## Funcionalidades
+- 5 estações temáticas
+- níveis de dificuldade
+- perguntas embaralhadas
+- sistema de vidas e pontuação
+- progresso salvo em localStorage
+- cadastro local por nome e e-mail
+- certificado final
+- layout responsivo para celular, tablet e desktop
 
-- Cinco estações: concordância, fake news, ortografia, vocabulário e caso final do ENEM.
-- Três níveis de dificuldade.
-- Perguntas e alternativas embaralhadas a cada investigação.
-- Pontuação, vidas, progresso e certificado final.
-- Perfil com nome e e-mail e salvamento automático no `localStorage` do navegador.
-- Sem dependências ou processo de build: basta abrir `index.html` ou publicar no GitHub Pages.
+## Como usar
 
-## Publicar no GitHub Pages
+1. Abra `index.html` no navegador.
+2. Escolha o nível.
+3. Comece a investigação.
+4. Salve seu nome e e-mail para continuar depois.
 
-No repositório, abra **Settings → Pages**, escolha a branch `main` e a pasta `/ (root)`. O endereço do jogo será exibido pelo GitHub.
+## Observação
 
-## Observação sobre contas
+A versão atual salva os dados no navegador do usuário. Isso funciona bem para um protótipo simples e rápido. Para sincronizar entre diferentes navegadores e dispositivos, seria necessário usar Firebase ou outra plataforma de autenticação.
 
-A versão atual salva o perfil e o progresso localmente no dispositivo, ideal para uma versão simples e sem servidor. Para sincronizar o mesmo progresso entre aparelhos, substitua o armazenamento local por Firebase Authentication e Firestore.
+## Acesso via GitHub Pages
+
+Quando o repositório estiver habilitado para Pages, o jogo pode ser acessado em:
+
+`https://SEU_USUARIO.github.io/NOME_DO_REPOSITORIO/`
+
