@@ -1,25 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101827" />
+    <meta name="theme-color" content="#111827" />
     <title>D.L.P. — Delegacia da Língua Portuguesa</title>
     <meta
       name="description"
-      content="Jogo de RPG educativo sobre língua portuguesa com níveis, investigação, certifi cado e progresso salvo."
+      content="Versão Pro do jogo educativo D.L.P. — Delegacia da Língua Portuguesa, com narrativa, níveis, pontuação, progresso e certificado."
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="bg-grid"></div>
+    <div class="noise"></div>
 
     <header class="topbar">
       <div class="brand-wrap">
-        <div class="brand-icon">D.L.P.</div>
-        <div>
-          <div class="brand-label">DELEGACIA</div>
-          <div class="brand-name">DA LÍNGUA PORTUGUESA</div>
+        <div class="brand-mark">D.L.P.</div>
+        <div class="brand-copy">
+          <small>DELEGACIA</small>
+          <strong>DA LÍNGUA PORTUGUESA</strong>
         </div>
       </div>
 
@@ -39,9 +39,9 @@
               <span>Salve a língua.</span>
             </h1>
             <p class="lead">
-              A cidade está repleta de crimes gramaticais, fake news, palavras mal escritas,
-              plágio e redações sem conectivos. Você vai assumir o papel de detetive e
-              resolver cada caso para virar <strong>Policial da Língua Portuguesa Nota 1000.</strong>
+              A cidade está cheia de crimes gramaticais, fake news, ortografia, plágio e redações sem conexão.
+              Você assume o papel de detetive, resolve cada caso e se torna o
+              <strong>Policial da Língua Portuguesa Nota 1000.</strong>
             </p>
 
             <div class="cta-row">
@@ -50,12 +50,10 @@
             </div>
           </div>
 
-          <div class="hero-art" aria-label="Painel de investigação com lupa e pasta">
+          <div class="hero-art">
             <div class="stamp">CASO<br />ABERTO</div>
             <div class="lupa-wrap">
-              <div class="lupa">
-                <span class="lupa-ring"></span>
-              </div>
+              <div class="lupa-ring"></div>
             </div>
             <div class="folder-card">
               <span>D.L.P.</span>
@@ -66,35 +64,35 @@
       </section>
 
       <section id="levelScreen" class="screen hidden">
-        <div class="panel-header center">
+        <div class="panel-header">
           <p class="eyebrow">ETAPA 01 · BRIEFING</p>
           <h2>Escolha o nível da missão</h2>
         </div>
 
         <div class="level-grid">
           <button class="level-card" data-level="facil">
-            <span class="level-emoji">🔎</span>
+            <span class="lvl-emoji">🔎</span>
             <strong>Cadete</strong>
             <small>Fácil · 5 pistas por estação</small>
             <b>+10 pontos por acerto</b>
           </button>
 
           <button class="level-card selected" data-level="medio">
-            <span class="level-emoji">🕵️</span>
+            <span class="lvl-emoji">🕵️</span>
             <strong>Investigador</strong>
             <small>Médio · 7 pistas por estação</small>
             <b>+15 pontos por acerto</b>
           </button>
 
           <button class="level-card" data-level="dificil">
-            <span class="level-emoji">🗂️</span>
+            <span class="lvl-emoji">🗂️</span>
             <strong>Agente Especial</strong>
             <small>Difícil · 9 pistas por estação</small>
             <b>+20 pontos por acerto</b>
           </button>
         </div>
 
-        <div class="center-box">
+        <div class="center-row">
           <button id="briefingBtn" class="primary-btn">Aceitar missão →</button>
         </div>
       </section>
@@ -104,10 +102,9 @@
           <p class="eyebrow">ORDEM DE SERVIÇO</p>
           <h2>Bem-vindos à Delegacia da Língua Portuguesa!</h2>
           <p>
-            Nossa língua está cheia de crimes: erros de concordância, fake news,
-            plágio, palavras escritas de forma errada e redações sem ligação entre as ideias.
-            Em cada estação vocês são detetives e precisam resolver o caso. Quem resolver todos,
-            vira detetive nota 1000.
+            Nossa língua está cheia de crimes: erros de concordância, fake news, plágio,
+            palavras escritas de forma errada e redações sem conexão. Em cada estação, vocês são detetives.
+            Quem resolver todos os casos, vira detetive nota 1000.
           </p>
 
           <div class="rules-row">
@@ -139,7 +136,7 @@
         </div>
 
         <div class="game-grid">
-          <aside class="case-sidebar" id="caseList"></aside>
+          <aside id="caseList" class="case-sidebar"></aside>
 
           <div class="question-panel">
             <div class="question-meta">
@@ -160,9 +157,7 @@
           <div class="trophy">🏆</div>
           <p class="eyebrow">INVESTIGAÇÃO CONCLUÍDA</p>
           <h2 id="resultTitle">Caso encerrado!</h2>
-          <p id="resultText">
-            Você concluiu todas as missões e salvou a língua portuguesa.
-          </p>
+          <p id="resultText">Você resolveu os crimes da língua portuguesa.</p>
 
           <div class="score-final">
             <strong id="finalScore">0</strong>
@@ -194,8 +189,8 @@
           <input id="emailInput" type="email" placeholder="detetive@email.com" />
         </label>
 
-        <button id="saveAccount" class="primary-btn full">Salvar perfil</button>
-        <p class="tiny">A versão atual salva no navegador. Para sincronizar entre aparelhos, seria necessário conectar Firebase.</p>
+        <button id="saveAccount" class="primary-btn full-width">Salvar perfil</button>
+        <p class="tiny">A versão Pro salva os dados no navegador para um uso local e rápido.</p>
       </div>
     </div>
 
@@ -208,7 +203,7 @@
           <h3>Certificado de Detetive</h3>
           <p>Concedido a</p>
           <h4 id="certificateName">Detetive</h4>
-          <p>por concluir a missão com sucesso e proteger a língua portuguesa.</p>
+          <p>por concluir a missão da língua portuguesa com excelência.</p>
           <strong>NOTA <span id="certificateScore">1000</span></strong>
           <div class="signature">CHEFE DA DELEGACIA</div>
         </div>
@@ -218,4 +213,3 @@
     <script src="app.js"></script>
   </body>
 </html>
-
