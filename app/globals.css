@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --color-noir-950: #0a0a0f;
+  --color-noir-900: #111119;
+  --color-noir-800: #1a1a26;
+  --color-noir-700: #262636;
+  --color-crime: #e11d2e;
+  --color-crime-dark: #8f0f1c;
+  --color-tape: #f4c020;
+  --color-evidence: #d9cbb0;
+  --color-approved: #22c55e;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-noir-950);
+  color: #e8e6df;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* Crime scene tape stripes */
+.tape-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-tape) 0,
+    var(--color-tape) 22px,
+    #111 22px,
+    #111 44px
+  );
+}
+
+.paper-grain {
+  background-color: var(--color-evidence);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+@keyframes stampIn {
+  0% {
+    transform: scale(2.4) rotate(-18deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.9) rotate(-12deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-12deg);
+    opacity: 1;
+  }
+}
+.animate-stamp {
+  animation: stampIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+.animate-shake {
+  animation: shake 0.4s;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.35s ease both;
+}
+
+@keyframes flash {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(225, 29, 46, 0.15); }
+}
+.animate-flash {
+  animation: flash 0.5s;
+}
