@@ -1,2 +1,17 @@
-
-.dlp-toast{position:fixed;right:20px;bottom:20px;z-index:30;background:#111827;color:#fff;border-left:5px solid #ffc857;border-radius:10px;padding:14px 18px;box-shadow:0 10px 30px #0004;animation:pop .25s ease;font-weight:700}
+/* Direção visual manual: papel, carimbo e materiais de delegacia escolar. */
+:root{--ink:#252525;--muted:#6f6a61;--red:#b83232;--yellow:#e2b34b;--paper:#fffdf7;--line:#d8d0c2;--shadow:5px 7px 0 rgba(37,37,37,.12)}
+body{font-family:Arial,Helvetica,sans-serif;background:#e8e1d5;color:var(--ink)}
+.ambient{display:none}.topbar{background:#252525;border-bottom:4px solid var(--yellow);box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.brand{font-family:Georgia,serif;letter-spacing:.02em}.brand span,.eyebrow,.tag,.level strong{font-family:Arial,Helvetica,sans-serif}.brand span{letter-spacing:.08em}
+.screen{max-width:1120px}.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.045em;text-shadow:none}.hero h1 em{font-style:italic;color:var(--red)}
+.lead{color:#514c45}.primary{background:var(--red);border-radius:4px;box-shadow:3px 4px 0 #762424}.primary:hover{transform:translate(-1px,-1px)}.secondary{border-radius:4px;background:var(--paper);border-color:#aaa092}
+.evidence{background:#bfc4c0;border:8px solid #fff;box-shadow:var(--shadow);transform:rotate(1deg)}.tape{background:#e2b34b;color:#252525;font-size:.78rem;box-shadow:0 2px 0 #92752f}.wanted{border-radius:0;box-shadow:3px 4px 0 rgba(0,0,0,.2)}
+.feature-row span,.rules span{border-radius:3px;background:var(--paper);border-color:var(--line)}.section-head h2,.brief-card h2,.result-card h2{font-family:Georgia,'Times New Roman',serif}.brief-card,.question-card,.result-card{border-radius:4px;background:var(--paper);box-shadow:var(--shadow)}.stamp{border-radius:0}
+.level{border-radius:4px;background:var(--paper);box-shadow:3px 4px 0 rgba(37,37,37,.1)}.level:hover{transform:translateY(-2px);box-shadow:4px 6px 0 rgba(37,37,37,.16)}.level.selected{background:#fff7df;box-shadow:4px 5px 0 rgba(37,37,37,.14)}
+.game-head h2,.question-card h3{font-family:Georgia,'Times New Roman',serif}.bar{background:#c9c1b5;border-radius:2px}.bar i{background:var(--red)}.case{border-left-color:#aaa092}.case.active{background:#fff7df;border-radius:0;box-shadow:3px 3px 0 rgba(37,37,37,.1)}
+.question-card{border-top:6px solid var(--red)}.option{border-radius:4px;background:#f3eee5;border-color:#ded5c7}.option:not(:disabled):hover{transform:none;background:#fff7df;border-color:var(--red)}.feedback{border-radius:3px;background:#f3eee5}
+.modal{background:rgba(37,37,37,.72)}.modal-card,.certificate{border-radius:4px;background:var(--paper);box-shadow:var(--shadow)}.certificate{border:8px solid var(--yellow);outline:2px solid #252525;outline-offset:-16px}.certificate h3{font-family:Georgia,serif}.trophy{animation:none}.icon-btn{border-radius:4px}
+.dlp-toast{background:#252525;border-left-color:var(--yellow);border-radius:3px}
+/* Remove o aspecto excessivamente polido no modo escuro; mantém apenas uma opção de leitura. */
+body.dark{background:#252525;color:#f5efe5}body.dark .secondary,body.dark .level,body.dark .question-card,body.dark .brief-card,body.dark .result-card,body.dark .modal-card,body.dark .certificate,body.dark .wanted{background:#343434;color:#f5efe5;border-color:#57504a}body.dark .option{background:#45413d;color:#f5efe5}
+@media(max-width:720px){.topbar{padding-inline:14px}.hero h1{font-size:clamp(2.8rem,14vw,4.8rem)}.evidence{transform:rotate(0)}.buttons .primary,.buttons .secondary{width:100%;text-align:center}.question-card{padding:22px 18px}}
